@@ -153,6 +153,14 @@ function display_res_list($res_list)
 }
 
 function check_room_constraints($stanza_id)
+// descrizione:
+// controlla che la stanza, di cui riceve l'id come parametro in ingresso,
+// appare nella tabella prenotazioni, nel qual caso la stanza non è cancellabile
+// e la funzione ritorna FALSE.
+// Se l'id stanza non appare nella tabella prenotazioni, la stanza è cancellabile
+// e la funzione ritorna TRUE.
+// Se la query fallisce, cioè non riesco a conoscere questa informazione,
+// ritorno comunque FALSE e blocco l'eventuale tentativo di cancellazione
 {
     $sql = "SELECT * FROM prenotazioni WHERE stanza_id = " . $stanza_id;
     $res_list = run_query($sql);
