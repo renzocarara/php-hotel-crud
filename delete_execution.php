@@ -1,4 +1,10 @@
 <?php
+
+// descrizione:
+// esegue l'effettiva query di cancellazione di una stanza,
+// riceve (in POST) l'id della stanza da cancellare
+// visualizza il risultato della query in pagina
+
 // includo le mie funzioni PHP che mi servono per gestire il DB
 include 'functions.php';
 
@@ -30,11 +36,15 @@ include 'layout/head.php';
                 <?php
                 if ($result) {
                     ?>
-                    <h2>Stanza cancellata!</h2>
+                    <div class="alert alert-success" role="alert">
+                      <a href="#" class="alert-link">Stanza cancellata!</a>
+                    </div>
                     <?php
                 } else {
                     ?>
-                    <p>Si è verificato un errore</p>
+                    <div class="alert alert-danger" role="alert">
+                      <a href="#" class="alert-link">Si è verificato un errore</a>
+                    </div>
                     <?php
                 }
                 ?>

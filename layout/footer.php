@@ -1,3 +1,5 @@
+<!-- parte terminale dei layout pagina -->
+
         <footer class="container-fluid navbar-fixed-bottom">
             <div class="row">
                 <div class="col-sm-12">

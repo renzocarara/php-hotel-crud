@@ -1,10 +1,17 @@
 <?php
+
+// descrizione:
+// esegue la lettura dal DB dei dati relativi ad una specifica stanza,
+// riceve in ingresso (in GET) l'id della stanza che si vuole visualizzare,
+// in aggiunta (BONUS) visualizza l'elenco delle prenotazioni (se ce ne sono)
+// associate alla stanza
+
 // includo le mie funzioni PHP che mi servono per gestire il DB
 include 'functions.php';
 
 // recupero i dati della singola stanza richiesta dal DB tramite query
 // l'id della stanza l'ho ricevuto in $_GET
-$sql = "SELECT * FROM stanze WHERE id = " . $_GET['id_stanza'];
+$sql = "SELECT * FROM stanze WHERE id =" . $_GET['id_stanza'];
 $result = run_query($sql);
 
 // solo se ho dei dettagli stanza da visualizzare, allora faccio un'altra query per recuperare
@@ -36,6 +43,7 @@ include 'layout/head.php';
 
                 </div>
             </div>
+            <?php  if ($result && $result->num_rows > 0) {?>
             <div class="row">
                 <div class="col-sm-12">
 
@@ -44,6 +52,7 @@ include 'layout/head.php';
 
                 </div>
             </div>
+            <?php } ?>
         </div>
     </main>
 <?php

@@ -1,4 +1,16 @@
 <?php
+
+// descrizione:
+// viene richiamata quando l'utente vuole cancellare una stanza,
+// controlla innanzitutto se la stanza è "cancellabile",
+// cioè se l'id della stanza non appare nella tabella prenotazioni,
+// perchè se così fosse la stanza risulta "non cancellabile" e l'utente non può fare altro,
+// Se invece l'utente può procedere con la cancellazione
+// chiede all'utente di confermare con un click la cancellazione
+// se l'utente conferma passa il controllo ad un altro script che esegue la query
+// di cancellazione vera e propria. A questo script passo l'id della stanza da cancellare,
+// tramite un campo 'hidden' di un form
+
 // includo le mie funzioni PHP che mi servono per gestire il DB
 include 'functions.php';
 
@@ -46,11 +58,12 @@ include 'layout/head.php';
                         <div class="alert alert-danger" role="alert">
                           <a href="#" class="alert-link">ATTENZIONE: la stanza non può essere cancellata</a>
                         </div>
-                                <?php
-                    } else {
-                        ?>
-                                    <p>Si è verificato un errore</p>
-                                <?php
+                    <?php
+                    } else {?>
+                        <div class="alert alert-danger" role="alert">
+                          <a href="#" class="alert-link">Si è verificato un errore</a>
+                        </div>
+                    <?php
                     }?>
                 </div>
             </div>

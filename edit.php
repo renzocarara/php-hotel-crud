@@ -1,5 +1,11 @@
 <?php
 
+// descrizione:
+// permette all'utente di aggiornare i dati di una stanza,
+// attraverso un form presenta all'utente i dati correnti della stanza (editabili),
+// al click dell'utente sul bottone di SUBMIT, passa il controllo e i dati raccolti,
+// ad uno script che deve eseguire la query di aggiornmento
+
 include 'functions.php';
 
 // Pagina modifica stanza
@@ -55,13 +61,18 @@ include 'layout/head.php';
 
                     <?php
                 } elseif ($result) { ?>
-                    <p>Non ci sono risultati</p>
+
+                    <div class="alert alert-warning" role="alert">
+                      <a href="#" class="alert-link">Non ci sono risultati</a>
+                    </div>
                     <?php
-                } else {
-                    ?>
-                    <p>Si è verificato un errore</p>
-                    <?php
-                } ?>
+                    } else {
+                        ?>
+                        <div class="alert alert-danger" role="alert">
+                          <a href="#" class="alert-link">Si è verificato un errore</a>
+                        </div>
+                        <?php
+                    } ?>
 
             </div>
         </div>

@@ -1,4 +1,10 @@
 <?php
+
+// descrizione:
+// controlla che i dati ricevuti in POST siano consistenti e nel caso
+// esegue la query per aggiornare una stanza nel DB,
+// visualizza la pagina con i dettagli della stanza appena aggiornati
+
 // includo le mie funzioni PHP che mi servono per gestire il DB
 include 'functions.php';
 
@@ -39,7 +45,9 @@ include 'layout/head.php';
             <div class="col-sm-12">
                 <?php
                 if ($result) { ?>
-                    <h2>Stanza modificata con successo!</h2>
+                    <div class="alert alert-success" role="alert">
+                      <a href="#" class="alert-link">Stanza modificata con successo!</a>
+                    </div>
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h3 class="panel-title">Dettagli stanza <?php echo $stanza_id; ?></h3>
@@ -55,7 +63,9 @@ include 'layout/head.php';
                     <?php
                 } else {
                     ?>
-                    <p>Si è verificato un errore</p>
+                    <div class="alert alert-danger" role="alert">
+                      <a href="#" class="alert-link">Si è verificato un errore</a>
+                    </div>
                     <?php
                 }
                 ?>

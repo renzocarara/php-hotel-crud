@@ -1,3 +1,4 @@
+<!-- parte iniziale dei layout pagina -->
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
     <head>

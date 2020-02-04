@@ -1,4 +1,12 @@
 <?php
+// descrizione:
+// permette all'utente di creare una nuova stanza nel DB,
+// utilizza un FORM per collezionare i dati utente,
+// al SUBMIT i dati del FORM vengono inviati ad un altro script (create_execution-php)
+// che si occuperà dell'esecuzione vera e propria della query sul DB
+// una volta terminata la query, il controllo ritorna a questo script che visualizzarà un messaggio
+// per indicare all'utente se la creazione è andata a buon fine o meno
+
 // apertura tag html e body, sezione head e navbar
 include 'layout/head.php';
 
@@ -51,7 +59,6 @@ include 'layout/head.php';
                           <a href="#" class="alert-link">Creazione stanza non riuscita</a>
                         </div>
                     <?php }
-                    $_GET=[];
                 } ?>
             </div>
         </div>

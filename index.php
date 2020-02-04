@@ -1,5 +1,17 @@
 <?php
 
+// descrizione:
+// è lo script iniziale,
+// allo startup esegue una lettura del database e visualizza i dati in pagina
+// (elenco delle stanze dell'hotel),
+// al click dell'utente sui bottoni corrispondenti,
+// passa il controllo a 4 script che implementano le CRUD:
+// CREATE: create.php
+// READ: read_execution.php
+// UPDATE: edit.php
+// DELETE: delete.php
+
+
 // includo le mie funzioni PHP che mi servono per gestire il DB
 include 'functions.php';
 
@@ -62,13 +74,17 @@ include 'layout/head.php';
                                 <?php
                                 } elseif ($result) { ?>
                                     <tr>
-                                        <td colspan="3">Non ci sono risultati</td>
+                                        <td colspan="3"><div class="alert alert-warning" role="alert">
+                                          <a href="#" class="alert-link">Non ci sono risultati</a>
+                                        </div></td>
                                     </tr>
                                     <?php
                                 } else {
                                     ?>
                                     <tr>
-                                        <td colspan="3">Si è verificato un errore</td>
+                                        <td colspan="3"><div class="alert alert-danger" role="alert">
+                                          <a href="#" class="alert-link">Si è verificato un errore</a>
+                                        </div></td>
                                     </tr>
                                     <?php
                                 }

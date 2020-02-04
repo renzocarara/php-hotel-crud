@@ -15,7 +15,7 @@ function connect_db()
 function run_query($query)
 // descrizione:
 // riceve in ingresso una stringa che rappresenta una query MySQL
-// si connette al DB, lancia la query choiude la connessione e ritorna il risultato
+// si connette al DB, lancia la query chiude la connessione e ritorna il risultato
 // se la connessione al DB fallisce, ritorna NULL
 {
     // creo connessione al DB
@@ -37,7 +37,7 @@ function run_query($query)
 function check_room_data($numero_stanza, $piano, $letti)
 // descrizione:
 // esegue dei controlli di consistenza sui dati relativi ad una stanza
-// (il numero della stanza, il piano e il numero di letti in stanza)
+// (il numero della stanza, il piano e il numero di letti)
 // verifica che siano non NULLI, interi e maggiori di zero,
 // ritorna TRUE se i dati sono OK, altrimenti FALSE
 {
@@ -88,13 +88,16 @@ function display_room_data($result)
 
         <?php
     } elseif ($result) { ?>
-        <p>Non ci sono risultati</p>
+        <div class="alert alert-warning" role="alert">
+          <a href="#" class="alert-link">Non ci sono risultati</a>
+        </div>
         <?php
-    } else {
-        ?>
-        <p>Si è verificato un errore</p>
-        <?php
-    }
+        } else {?>
+            <div class="alert alert-danger" role="alert">
+              <a href="#" class="alert-link">Si è verificato un errore</a>
+            </div>
+            <?php
+        }
 }
 function display_res_list($res_list)
 // descrizione:
@@ -135,13 +138,17 @@ function display_res_list($res_list)
             <?php
             } elseif ($res_list) { ?>
                 <tr>
-                    <td colspan="3">Non ci sono prenotazioni per questa stanza</td>
+                    <td colspan="4"><div class="alert alert-warning" role="alert">
+                      <a href="#" class="alert-link">Non ci sono prenotazioni per questa stanza</a>
+                    </div</td>
                 </tr>
                 <?php
             } else {
                 ?>
                 <tr>
-                    <td colspan="3">Si è verificato un errore</td>
+                    <td colspan="4"><div class="alert alert-danger" role="alert">
+                      <a href="#" class="alert-link">Si è verificato un errore</a>
+                    </div></td>
                 </tr>
                 <?php
             }
@@ -154,12 +161,12 @@ function display_res_list($res_list)
 
 function check_room_constraints($stanza_id)
 // descrizione:
-// controlla che la stanza, di cui riceve l'id come parametro in ingresso,
+// controlla se la stanza, di cui riceve l'id come parametro in ingresso,
 // appare nella tabella prenotazioni, nel qual caso la stanza non è cancellabile
 // e la funzione ritorna FALSE.
 // Se l'id stanza non appare nella tabella prenotazioni, la stanza è cancellabile
 // e la funzione ritorna TRUE.
-// Se la query fallisce, cioè non riesco a conoscere questa informazione,
+// Se la query fallisce, cioè non riesco a recuperare questa informazione,
 // ritorno comunque FALSE e blocco l'eventuale tentativo di cancellazione
 {
     $sql = "SELECT * FROM prenotazioni WHERE stanza_id = " . $stanza_id;
