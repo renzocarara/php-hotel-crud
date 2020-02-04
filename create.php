@@ -36,6 +36,26 @@ include 'layout/head.php';
                 </form>
             </div>
         </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+
+                <?php
+                if (!empty($_GET)) {
+                    if ($_GET['success'] == 'true') {?>
+                        <div class="alert alert-success" role="alert">
+                          <a href="#" class="alert-link">Stanza creata con successo!</a>
+                        </div>
+                    <?php } else { ?>
+                        <div class="alert alert-danger" role="alert">
+                          <a href="#" class="alert-link">Creazione stanza non riuscita</a>
+                        </div>
+                    <?php }
+                    $_GET=[];
+                } ?>
+            </div>
+        </div>
+
     </div>
 </main>
 
