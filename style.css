@@ -1,0 +1,17 @@
+#crea-stanza, #torna-in-home {
+    margin-top: 20px;
+}
+
+main {
+    padding-top: 100px;
+    padding-bottom: 50px;
+}
+
+.navbar-brand img {
+    height: 100%;
+}
+
+footer {
+    background-color: black;
+    color: white;
+}
