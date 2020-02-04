@@ -7,6 +7,12 @@ include 'functions.php';
 $sql = "SELECT * FROM stanze WHERE id = " . $_GET['id_stanza'];
 $result = run_query($sql);
 
+// solo se ho dei dettagli stanza da visualizzare, allora faccio un'altra query per recuperare
+// le prenotazioni associate alla stanza
+if ($result && $result->num_rows > 0) {
+    $sql = "SELECT * FROM prenotazioni WHERE stanza_id = " . $_GET['id_stanza'];
+    $res_list = run_query($sql);
+}
 // apertura tag html e body, sezione head e navbar
 include 'layout/head.php';
 ?>
@@ -27,6 +33,14 @@ include 'layout/head.php';
 
                     <!-- visualizzo i dati della singola stanza in pagina -->
                     <?php display_room_data($result); ?>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <!-- visualizzo i dati relativi alle prenotazioni della stanza -->
+                    <?php display_res_list($res_list); ?>
 
                 </div>
             </div>
