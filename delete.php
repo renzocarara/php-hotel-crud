@@ -27,7 +27,9 @@ include 'layout/head.php';
                     <?php
                     display_room_data($result);
 
-                    if ($result && $result->num_rows > 0) { ?>
+                    $is_room_erasable=check_room_constraints($_GET['id_stanza']);
+
+                    if (($result && $result->num_rows > 0) && ($is_room_erasable)) { ?>
                     <div class="alert alert-danger" role="alert">
                       <a href="#" class="alert-link">ATTENZIONE: i dati verranno cancellati definitivamente</a>
                     </div>
@@ -40,11 +42,16 @@ include 'layout/head.php';
                       </div>
                       <button type="submit" class="btn btn-danger">Clicca per confermare</button>
                     </form>
-
-
-
-
-                    <?php } ?>
+                    <?php } elseif (!$is_room_erasable) {?>
+                        <div class="alert alert-danger" role="alert">
+                          <a href="#" class="alert-link">ATTENZIONE: la stanza non può essere cancellata</a>
+                        </div>
+                                <?php
+                    } else {
+                        ?>
+                                    <p>Si è verificato un errore</p>
+                                <?php
+                    }?>
                 </div>
             </div>
         </div>

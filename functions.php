@@ -104,6 +104,7 @@ function display_res_list($res_list)
 // consistenti (ci sono dati da visualizzare, l'array contiene elementi, elabora),
 // vuoti (non ci sono risultati da visualizzare, array vuoto, 0 elementi)
 // nulli (i dati ricevuti sono NULL)
+
 { ?>
 <div class="table-responsive">
     <table class="table">
@@ -149,5 +150,23 @@ function display_res_list($res_list)
     </table>
 </div>
 <?php
+}
+
+function check_room_constraints($stanza_id)
+{
+    $sql = "SELECT * FROM prenotazioni WHERE stanza_id = " . $stanza_id;
+    $res_list = run_query($sql);
+
+    if ($res_list && $res_list->num_rows > 0) {
+        // ci sono prenotazioni associate a quella stanza,
+        // non posso cancellarla
+        return false;
+    } elseif ($res_list) {
+        // non si sono prenotazioni associate alla stanza, posso cancellarla
+        return true;
+    } else {
+        // la query è fallita, non ho riscontro, blocco la cancellazione
+        return false;
+    }
 }
 ?>
